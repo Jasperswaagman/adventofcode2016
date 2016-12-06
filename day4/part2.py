@@ -2,9 +2,7 @@ import re
 from collections import Counter
 from operator import itemgetter
 
-sum_sector_ids = 0
-
-with open("input", "r") as fp:
+with open("smallinput", "r") as fp:
     for line in fp:
         line = line.strip()
         
@@ -23,6 +21,8 @@ with open("input", "r") as fp:
         letters.sort(key=itemgetter(1), reverse=True)
         most_common = [] 
         for c in range(5): most_common.append(letters[c][0])
-        if "".join(most_common) == checksum: sum_sector_ids += sector_id
+        if "".join(most_common) == checksum: 
+            print(r.group(1))
+            # Loop through the string and shift every char sector_id times
+            # if string == North Pole: print(sector_id)
 
-    print(sum_sector_ids)
