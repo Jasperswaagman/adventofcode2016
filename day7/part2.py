@@ -1,4 +1,5 @@
 import re
+
 i = 0
 
 def has_hypernet_ABBA(hypernet_sequences):
