@@ -17,7 +17,8 @@ i = 0
 
 def ABBA_detector(pattern):
     for i in range(len(pattern) - 1): 
-        if pattern[i] == pattern[i+1] and pattern[i-1] == pattern[i+2]: return True
+        if pattern[i] == pattern[i+1] and pattern[i-1] == pattern[i+2] 
+            and pattern[i+1] != pattern[i+2]: return True # We need to add a check so aaaa is invalid
 
 
 with open('small_input') as f: 
