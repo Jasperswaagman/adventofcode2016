@@ -14,7 +14,7 @@ with open('input') as f:
 for x in range(len(message)):
     c = Counter(message[x]).most_common()
     print(c)
-    c.sort(key=itemgetter(1), reverse=True)
+    c.sort(key=itemgetter(1))
     message_final = message_final + c[0][0]
 
 print(message_final)
