@@ -2,6 +2,8 @@ import re
 
 i = 0
 
+r1 = '(\w)(.)\1'
+
 def has_hypernet_ABBA(hypernet_sequences):
     for l in hypernet_sequences:
         print(l)
@@ -12,17 +14,24 @@ def ABBA_detector(pattern):
         if pattern[i] == pattern[i+1] and pattern[i-1] == pattern[i+2] and pattern[i] != pattern[i+2]: 
             return True
 
+def BAB_detector(hypernets):
+    for s in supernets: print(s)
+        # Check if bab pattern is there
 
-with open('input') as f: 
+def ABA_detector(supernets, hypernets):
+    for s in supernets:
+        aba = re.search('(\w)(\w)\\1', s)
+        #aba = re.search('(\w)(\w)\1', s) # in one go: if re.search(regex): BAB_detector(hypernets)
+        if aba is not None: print(aba)
+
+
+
+with open('small_input') as f: 
     for line in f:
         line = line.strip()
-        hypernet_sequences = re.findall('(\[.*?\])', line) # Need to get all the bracket groups and join them, then the rest
-        print(hypernet_sequences)
-        if not has_hypernet_ABBA(hypernet_sequences):
-            ip_address = re.findall('(.*?)(?:\[.*?\]|$)', line) # Get the rest of the IP address
-            ip_address = list(filter(len, ip_address))
-            for x in ip_address:
-                if ABBA_detector(x): i += 1; print(i); break
-        
-print('{0} IPs that support TLS'.format(i))
+        supernets = re.findall('(\w+?)(?:\[.*?\]|$)', line)
+        hypernets = re.findall('\[(\w+?)\]', line)
+        print('supernets: {0}'.format(supernets))
+        print('hypernets: {0}'.format(hypernets))
+        ABA_detector(supernets,hypernets)
         
